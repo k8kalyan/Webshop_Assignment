@@ -1,10 +1,9 @@
 
 package com.webshop.registration.repository;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
+import javax.persistence.Query;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.*;
 import com.webshop.registration.model.ProductEntity;
@@ -41,11 +40,15 @@ import com.webshop.registration.model.ProductEntity;
 public class ProductDaoImpl implements ProductDao {
 	@PersistenceContext
 	private EntityManager entitymanager;
-	public List<ProductEntity> getproductlist(){
-		TypedQuery<ProductEntity> Query=entitymanager.createNamedQuery("ProductEntity.find",ProductEntity.class);
-		List<ProductEntity> productlist=Query.getResultList();
+	public List<ProductEntity> getproductlist(String product){
+		Query query = entitymanager.createQuery("from ProductEntity p where p.pcid =:arg1");
+		query.setParameter("arg1", product);	
+		List<ProductEntity> productlist=query.getResultList();
 		return productlist;
 
 	}
+
+
+
 
 }
