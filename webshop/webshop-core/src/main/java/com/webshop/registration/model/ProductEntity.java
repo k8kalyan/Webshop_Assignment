@@ -1,12 +1,14 @@
 package com.webshop.registration.model;
 
 import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 /**
  * ProductEntity class provides all the product details such as productID and price. 
@@ -38,8 +40,8 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="product_categories")
-@NamedQuery(name="ProductEntity.find",query="select p from ProductEntity p")
+@Table(name="products")
+
 public class ProductEntity implements Serializable {
 	/**
 	 * 
@@ -48,8 +50,47 @@ public class ProductEntity implements Serializable {
 
 	@Id
 	@Column(name="Id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer id;
+	@Column(name="PCID")
+	private String pcid;
+	
+	@Column(name="DESCRIPION")
+	private String desc;
+	
+	
+	public String getPcid() {
+		return pcid;
+	}
+
+	public void setPcid(String pcid) {
+		this.pcid = pcid;
+	}
+
+	public String getDesc() {
+		return desc;
+	}
+
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
+
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
+
+	@Column(name="PRICE")
+	private String price;
+	
+	@Column(name="NAME")
+	private String name; 
+	 @OneToOne
+     @JoinColumn(name = "Product_ID")
+	private OrderEntity order;
 	public Integer getId() {
 		return id;
 	}
@@ -66,7 +107,6 @@ public class ProductEntity implements Serializable {
 		this.name = name;
 	}
 
-	@Column(name="NAME")
-	private String name;
+		
 
 }
