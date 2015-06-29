@@ -1,14 +1,19 @@
 package com.webshop.registration.model;
 
 import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.webshop.login.model.Role;
 /**
- * UserEntity class provides all the user details such as username, password and address. 
+ * User class provides user attributes required to store data in database . 
  * <P>
  * <B> Visibility decisions: </B>
  * <P>
@@ -35,7 +40,6 @@ import javax.persistence.Table;
  * </PRE>
  */
 
-
 @Entity
 @Table(name="users")
 public class UserEntity implements Serializable {
@@ -44,9 +48,8 @@ public class UserEntity implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer ID;
-
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private Integer id;
 	@Column(name="FIRST_NAME")
 	private String fname;
 	@Column(name="LAST_NAME")
@@ -63,17 +66,15 @@ public class UserEntity implements Serializable {
 	private String city;
 	@Column(name="PINCODE")
 	private String pincode;
-	/**
-	 * @return the iD
-	 */
-	public Integer getID() {
-		return ID;
+	@OneToOne
+	@JoinColumn(name = "id")
+	private Role role;
+	
+	public Integer getId() {
+		return id;
 	}
-	/**
-	 * @param iD the iD to set
-	 */
-	public void setID(Integer iD) {
-		ID = iD;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	/**
 	 * @return the fname
