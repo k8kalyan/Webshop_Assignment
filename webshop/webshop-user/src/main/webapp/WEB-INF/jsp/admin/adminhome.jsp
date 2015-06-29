@@ -4,23 +4,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="admin.css">
 <script type="text/javascript" language="javascript">
 function productSubmit()
 {
-	var selected_index = productForm.elements["product"].selectedIndex; 
+	var selected_index  = document.getElementById('product').value;
 	 if(selected_index > 0) 
 	{ 
-		
-	   var selected_option_value = productForm.elements["product"].options[selected_index].value;
-	   alert('Please select the product'+selected_option_value);
-	   
-	   var selected_option_text = productForm.elements["product"].options[selected_index].Text;
-	   alert('Please select the product'+selected_option_text);
-	   document.getElementById("ProductCategories").text='Item';
-	   document.getElementById("ProductDescription").text='apple';
-	   document.getElementById("Quantity").text='apple';
-	   document.getElementById("Price").text='apple';
-	   document.productForm.submit();
+		 
+	  	   document.productForm.submit();
 	} else
 	{ 
 	   alert('Please select the product'); 
@@ -32,34 +25,45 @@ function productSubmit()
 </head>
 <body>
 
-  <form method="post" action="product.action"> 
+  <form name="productForm" method="post" action="product.action" modelAttribute=> 
  
  <select name="product" id="product" placeholder="product">
-        <option value="Apple">Apple</option>
-        <option value="Banna">Banana</option>
-        <option value="orange">Orange</option>
-        <option value="grapes">Grapes</option>
+        <option value="1">Fruits</option>
+        <option value="2">Vegetables</option>
+        <option value="3">Books</option>
     </select>
    
-        
-    <input type="text" name="ProductCategories">  
-     <input type="text" name="ProductDescription">
-     
-     <button id="booksbutton" type="submit">Search</button>
+       
+     <button id="booksbutton" type="button" onclick="productSubmit()">Search</button>
      
      
     </form>
-   <c:if test="${not empty lists}">
- 
-		<ul>
-			<c:forEach var="listValue" items="${lists}">
-			<table>
-			<tr><td>${listValue.id} </td><td>${listValue.name} </td><td>  <a href="<c:url value="order.action?id=${listValue.id}" />">Order</a> </td></tr>
-			</table>				
-			</c:forEach>
-		</ul>
- 
-	</c:if>
-  <a href="logout.action">Logout</a>
+    
+    <table align="center" style="margin: 0px auto;">
+       	 <c:if test="${not empty productList.products}">	
+    		<tr>
+   				<th>Item Name</th>
+  				<th>Item Desc</th>
+  				<th>Price</th>
+ 			</tr>
+ 		</c:if>
+		<c:forEach items="${productList.products}" var="product" varStatus="status"> 
+   			
+   			<tr class="rows">
+   				<td>${product.name} </td>
+   				<td>${product.desc} </td>
+   				<td>${product.price} </td>
+   				<td>  <a href="<c:url value="addtocart.action?id=${product.id}&name=${product.name}&price=${product.price}" />">AddToCart</a> </td>
+   				
+  			 </tr>
+   		
+           
+     </c:forEach> 
+		
+		
+	</table>
+
+   
+  <a  style="align:right" class="logout" href="logout.action">Logout</a>
 </body>
 </html>
