@@ -39,8 +39,8 @@ import com.webshop.registration.repository.ProductDao;
 public class ProductManagerImpl implements ProductManager{
 	@Autowired 
 	ProductDao productdao;
-	public List<ProductEntity> getproductlist(){
-		return productdao.getproductlist();
+	public List<ProductEntity> getproductlist(String product){
+		return productdao.getproductlist(product);
 	}
 
 }
