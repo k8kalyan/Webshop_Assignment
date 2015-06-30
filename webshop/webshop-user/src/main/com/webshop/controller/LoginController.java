@@ -56,7 +56,6 @@ public class LoginController {
 	 * */
 	@RequestMapping("loginuser.action")
 	public String getAuthenticated(@RequestParam String username,@RequestParam String password,HttpSession session,Model model){
-System.out.println("Successandfail");
 		UserEntity user;
 		if(username.equals("") || password.equals("")){
 			return "login";
