@@ -9,6 +9,7 @@
  <class>com.webshop.login.model.Role</class>
  <class>com.webshop.registration.model.ProductEntity</class>
  <class>com.webshop.registration.model.OrderEntity</class>
+  <class>com.webshop.registration.model.ProductCategories</class>
   
     <properties>
       <property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
