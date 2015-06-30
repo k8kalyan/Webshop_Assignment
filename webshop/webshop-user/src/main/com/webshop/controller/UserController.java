@@ -6,8 +6,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
-import com.webshop.model.UserEntity;
-import com.registration.service.UserManager;
+import com.webshop.registration.model.UserEntity;
+import com.webshop.registration.service.UserManager;
 /**
  * UserController class will get all the Registrationform details. 
  * <P>
