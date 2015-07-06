@@ -1,13 +1,21 @@
 package com.webshop.registration.model;
 
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ColumnResult;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.SqlResultSetMapping;
 /**
  * ProductCategories class provides all the product category details. 
  * <P>
@@ -37,28 +45,46 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="product_categories")
+@NamedQuery(name="ProductCategories.find",query="select p from ProductCategories p")
+@SqlResultSetMapping(name="deleteResult", columns = { @ColumnResult(name = "count")})
+@NamedNativeQueries({
+	@NamedNativeQuery(
+			name    =   "deleteEmployeeById",
+			query   =   "DELETE FROM product_categories WHERE id = ?"
+			,resultSetMapping = "deleteResult"
+			)
+})
 public class ProductCategories {
 	@Id
-	@Column(name="Id")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer id;
-	
-	@OneToOne
+	@Column(name="NAME")
+	private String name;
+	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinColumn(name = "pcid")
-	private ProductEntity productEntity;
-	 @Column(name="NAME")
-		private String name;
-	 
-	 public String getName() {
+	private Set<ProductEntity> productEntity;
+	/**
+	 * @return the id
+	 */
+	public Integer getId() {
+		return id;
+	}
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	/**
+	 * @return the name
+	 */
+	public String getName() {
 		return name;
 	}
+	/**
+	 * @param name the name to set
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Integer getId() {
-			return id;
-		}
-		public void setId(Integer id) {
-			this.id = id;
-		}
 }
