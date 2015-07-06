@@ -30,17 +30,21 @@ import java.util.List;
 
 
 public class ProductList {
-	
-	
-		  
-	    private List<TestProduct> products; 
-	  
-	    public List<TestProduct> getProducts() { 
-	        return products; 
-	    } 
-	  
-	    public void setProducts(List<TestProduct> products) { 
-	        this.products = products; 
-	    } 
-	
+
+	private List<TestProduct> products;
+
+	/**
+	 * @return the products
+	 */
+	public List<TestProduct> getProducts() {
+		return products;
+	}
+
+	/**
+	 * @param products the products to set
+	 */
+	public void setProducts(List<TestProduct> products) {
+		this.products = products;
+	} 
+
 }
