@@ -3,9 +3,11 @@ package com.webshop.registration.repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import com.webshop.registration.model.OrderEntity;
+
+import com.webshop.registration.model.OrderShipment;;
 /**
  * OrderManagerImpl invoke OrderManager class and calls the method addOrder. 
  * <P>
@@ -41,9 +43,19 @@ import com.webshop.registration.model.OrderEntity;
 public class OrderDaoImpl implements OrderDao {
 	@PersistenceContext
 	private EntityManager entitymanager;
+ /**
+  * This method used to add the shipmentorder.
+  * @param orderShipment 
+ */
 	
-public void addOrder(OrderEntity orderEntity){
-	  entitymanager.persist(orderEntity);
+public void addOrder(OrderShipment orderShipment){
+	
+	try
+	{
+	  entitymanager.persist(orderShipment);
+	  } catch(Exception e){
+		e.printStackTrace();
+	}
 }
 
 }
