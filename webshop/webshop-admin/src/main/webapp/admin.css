@@ -1,0 +1,29 @@
+logout {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    float: right;
+}
+
+header {
+    width: 100px;
+    height: 100px;
+    background-color: #A29D9D;
+    float: center;
+}
+
+rows {
+    width: 100px;
+    height: 100px;
+    background-color: #4552A8;
+    float: center;
+}
+
+table, th, td {
+   border: 1px solid black;
+} 
+
+table {
+    border-collapse: collapse;
+}
+
