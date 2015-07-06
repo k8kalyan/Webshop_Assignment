@@ -74,7 +74,6 @@ public class AdminDaoImpl implements AdminDao {
 	 *  @param productCategory 
 	 */
 	public void addCategory(ProductCategories productCategory){
-		System.out.println("in add Repo");
 		entitymanager.persist(productCategory);
 	}
 	/**
@@ -83,7 +82,6 @@ public class AdminDaoImpl implements AdminDao {
 	 */
 
 	public void addProduct(ProductEntity product){
-		System.out.println("in add Repo Product");
 		entitymanager.persist(product);
 	}
 	/**
