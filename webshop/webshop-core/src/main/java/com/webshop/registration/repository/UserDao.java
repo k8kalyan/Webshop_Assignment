@@ -28,5 +28,9 @@ import com.webshop.registration.model.UserEntity;
  * </PRE>
  */
 public interface UserDao {
+/**
+ * This method will call the method addUser.
+ * @param userEntity 
+*/
 	public void addUser(UserEntity userEntity);
 }
