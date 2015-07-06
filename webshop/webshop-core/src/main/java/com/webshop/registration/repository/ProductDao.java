@@ -31,6 +31,10 @@ import com.webshop.registration.model.ProductEntity;
  * </PRE>
  */
 public interface ProductDao {
+/**
+  * This method will get the productlist.
+  * @param ProductEntity 
+ */
 	public List<ProductEntity> getproductlist(String product);
 
 }
