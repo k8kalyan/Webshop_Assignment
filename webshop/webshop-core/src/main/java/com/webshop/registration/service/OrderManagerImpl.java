@@ -3,7 +3,7 @@ package com.webshop.registration.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.webshop.registration.model.OrderEntity;
+import com.webshop.registration.model.OrderShipment;
 import com.webshop.registration.repository.OrderDao;
 /**
  * OrderManagerImpl invoke OrderManager class and calls the method addOrder. 
@@ -37,7 +37,7 @@ import com.webshop.registration.repository.OrderDao;
 public class OrderManagerImpl implements OrderManager {
 	@Autowired
 	OrderDao orderdao;
-	public void addOrder(OrderEntity orderEntity){
-		orderdao.addOrder(orderEntity);
+	public void addOrder(OrderShipment orderShipment){
+		orderdao.addOrder(orderShipment);
 	}
 }
