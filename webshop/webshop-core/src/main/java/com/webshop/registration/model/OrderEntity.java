@@ -40,7 +40,7 @@ import javax.persistence.Table;
 public class OrderEntity {
 	@Id
 	@Column(name="id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer id;
 	@Column(name="Order_Id")
 	private Integer orderid;
@@ -110,6 +110,7 @@ public class OrderEntity {
 	public void setPrice(Double price) {
 		this.price = price;
 	}
+
 
 
 
