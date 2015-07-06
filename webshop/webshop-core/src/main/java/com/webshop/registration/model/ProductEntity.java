@@ -1,15 +1,23 @@
 package com.webshop.registration.model;
-
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ColumnResult;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.SqlResultSetMapping;
+
 /**
  * ProductEntity class provides all the product details such as productID and price. 
  * <P>
@@ -41,72 +49,91 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="products")
+@NamedQuery(name="ProductEntity.find",query="select p from ProductEntity p")
+@SqlResultSetMapping(name="deleteProductResult", columns = {@ColumnResult(name = "count")})
+@NamedNativeQueries({
+	@NamedNativeQuery(
+			name    =   "deleteProductById",
+			query   =   "DELETE FROM products WHERE id = ?"
+			,resultSetMapping = "deleteProductResult"
+			)
+})
 
 public class ProductEntity implements Serializable {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="Id")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer id;
-	@Column(name="PCID")
-	private String pcid;
-	
 	@Column(name="DESCRIPION")
-	private String desc;
-	
-	
-	public String getPcid() {
-		return pcid;
-	}
-
-	public void setPcid(String pcid) {
-		this.pcid = pcid;
-	}
-
-	public String getDesc() {
-		return desc;
-	}
-
-	public void setDesc(String desc) {
-		this.desc = desc;
-	}
-
-	public String getPrice() {
-		return price;
-	}
-
-	public void setPrice(String price) {
-		this.price = price;
-	}
-
+	private String description;
+	@Column(name="NAME")
+	private String name;
+	@Column(name="PCID")
+	private Integer pcid;
 	@Column(name="PRICE")
 	private String price;
-	
-	@Column(name="NAME")
-	private String name; 
-	 @OneToOne
-     @JoinColumn(name = "Product_ID")
-	private OrderEntity order;
+	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@JoinColumn(name = "productid")
+	private Set<OrderEntity> order;
+	/**
+	 * @return the id
+	 */
 	public Integer getId() {
 		return id;
 	}
-
+	/**
+	 * @param id the id to set
+	 */
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
+	/**
+	 * @param description the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	/**
+	 * @return the name
+	 */
 	public String getName() {
 		return name;
 	}
-
+	/**
+	 * @param name the name to set
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
-
-		
-
+	/**
+	 * @return the pcid
+	 */
+	public Integer getPcid() {
+		return pcid;
+	}
+	/**
+	 * @param pcid the pcid to set
+	 */
+	public void setPcid(Integer pcid) {
+		this.pcid = pcid;
+	}
+	public String getPrice() {
+		return price;
+	}
+	/**
+	 * @param price the price to set
+	 */
+	public void setPrice(String price) {
+		this.price = price;
+	} 
+	
+	
 }
