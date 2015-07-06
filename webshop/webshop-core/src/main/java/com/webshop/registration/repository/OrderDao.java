@@ -1,6 +1,6 @@
 package com.webshop.registration.repository;
 
-import com.webshop.registration.model.OrderEntity;
+import com.webshop.registration.model.OrderShipment;
 /**
  * OrderDAO class will invoke addOrder method . 
  * <P>
@@ -30,6 +30,10 @@ import com.webshop.registration.model.OrderEntity;
  */
 
 public interface OrderDao {
-	public void addOrder(OrderEntity orderEntity);
+	 /**
+     * This method used to add the order.
+     * @param orderShipment 
+     */
+	public void addOrder(OrderShipment orderShipment);
 
 }
