@@ -1,11 +1,15 @@
 package com.webshop.controller;
 
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
+
 import com.webshop.login.service.LoginManager;
 import com.webshop.registration.model.UserEntity;
 /**
@@ -43,10 +47,11 @@ public class LoginController {
 	@Autowired
 	LoginManager loginmanager;
 
-	@RequestMapping("login.action")
-	public String showLoginForm(){
-		return "login";
+	@RequestMapping("adminhome.action")
+	public String showUserpage(){
+		return "admin/adminhome";
 	}
+
 	/**
 	 * This Method used to Insert the login details into the database.
 	 * @param username - contains User details.
@@ -54,11 +59,14 @@ public class LoginController {
 	 * @param session
 	 * @param model
 	 * */
+
 	@RequestMapping("loginuser.action")
-	public String getAuthenticated(@RequestParam String username,@RequestParam String password,HttpSession session,Model model){
+	public ModelAndView getAuthenticated(@RequestParam String username,@RequestParam String password,HttpSession session,Model model){
+
 		UserEntity user;
 		if(username.equals("") || password.equals("")){
-			return "login";
+			return new ModelAndView(new RedirectView("login.action"));
+
 		}
 		else{
 			user=loginmanager.getAuthenticted(username, password);
@@ -66,15 +74,19 @@ public class LoginController {
 			if(user.equals("")){
 
 				model.addAttribute("loginError", "Error In login,Please try again");
-				return "login";
+
+				return new ModelAndView(new RedirectView("login.action"));
 			}
 			session.setAttribute("loggedinUser", user);
 			String authority=loginmanager.getRole(username);
 
-			if(authority.equals("ROLE_ADMIN")){
-				return "admin/adminhome";
+			if(authority.equals("ROLE_USER")){
+		
+				return new ModelAndView(new RedirectView("adminhome.action"));
+
 			}
-			return "product/product-home";
+			return new ModelAndView(new RedirectView("adminmain.action"));
+
 		}
 	}
 }
