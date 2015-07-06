@@ -37,7 +37,11 @@ import com.webshop.registration.model.ProductEntity;
 
 @Repository
 @Transactional
-public class ProductDaoImpl implements ProductDao {
+public class ProductDaoImpl implements ProductDao 
+/**
+ * This method will get the productlist from productEnity class.
+ * @param product 
+ */{
 	@PersistenceContext
 	private EntityManager entitymanager;
 	public List<ProductEntity> getproductlist(String product){
