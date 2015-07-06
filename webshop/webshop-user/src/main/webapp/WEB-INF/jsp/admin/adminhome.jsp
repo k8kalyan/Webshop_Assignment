@@ -24,7 +24,7 @@ function productSubmit()
 <title>Admin-Home</title>
 </head>
 <body>
-
+<center>
   <form name="productForm" method="post" action="product.action" modelAttribute=> 
  
  <select name="product" id="product" placeholder="product">
@@ -39,7 +39,7 @@ function productSubmit()
      
     </form>
     
-    <table align="center" style="margin: 0px auto;">
+    <table border='1.5' width='600' cellpadding='1' cellspacing='1'>
        	 <c:if test="${not empty productList.products}">	
     		<tr>
    				<th>Item Name</th>
@@ -64,6 +64,7 @@ function productSubmit()
 	</table>
 
    
-  <a  style="align:right" class="logout" href="logout.action">Logout</a>
+  <a  style="float: right;" class="logout" href="logout.action">Logout</a>
+</center>
 </body>
 </html>
