@@ -1,16 +1,17 @@
 package com.webshop.registration.model;
 
 import java.io.Serializable;
-
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 import com.webshop.login.model.Role;
 /**
  * User class provides user attributes required to store data in database . 
@@ -66,19 +67,22 @@ public class UserEntity implements Serializable {
 	private String city;
 	@Column(name="PINCODE")
 	private String pincode;
-	@OneToOne
+	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinColumn(name = "id")
-	private Role role;
+	private Set<Role> role; 
 	
+	/**
+	 * @return the id
+	 */
 	public Integer getId() {
 		return id;
 	}
+	/**
+	 * @param id the id to set
+	 */
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	/**
-	 * @return the fname
-	 */
 	public String getFname() {
 		return fname;
 	}
