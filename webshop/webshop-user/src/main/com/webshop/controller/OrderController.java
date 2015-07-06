@@ -1,13 +1,13 @@
 package com.webshop.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
-import com.webshop.registration.model.OrderEntity;
+import org.springframework.web.bind.support.SessionStatus;
+import com.webshop.registration.model.OrderShipment;
 import com.webshop.registration.service.OrderManager;
+
 
 /**
  * OrderController prepares the order entity object with price, product and quantity information. 
@@ -41,16 +41,19 @@ import com.webshop.registration.service.OrderManager;
 public class OrderController {
 	@Autowired
 	OrderManager manager;
-	@RequestMapping(value = "order.action", method=RequestMethod.GET, params="id")
-	public String byParameter(@RequestParam("id") int id,Model model){
-		OrderEntity orderentity=new OrderEntity();
-		orderentity.setOrderid(1);
-		orderentity.setPrice(100.00);
-		orderentity.setProductid(id);
-		orderentity.setQuantity(1);
-		manager.addOrder(orderentity);
-		ModelAndView model1 = new ModelAndView("login");
-		return "login"; 
+	@RequestMapping("orderuser.action")
+	public String addOrderForm(@ModelAttribute("orderShipment") OrderShipment orderShipment){
+
+		return "order/order";
+	}
+	@RequestMapping("order.action")
+	
+	public String SubmitForm(@ModelAttribute("orderShipment") OrderShipment orderShipment, BindingResult result,SessionStatus status){
+
+		manager.addOrder(orderShipment);
+		status.setComplete();
+		return "order/success";
+
 	}
 
 
