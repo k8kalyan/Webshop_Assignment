@@ -28,48 +28,87 @@ package com.webshop.registration.model;
  */
 
 public class TestProduct {
-	
 
 	private String id;
 	
+	private String pcid;
+	
 	private String desc;
 	
-	private String price;
+    private String price;
 	
-	public String getDesc() {
-		return desc;
-	}
+	private String name;
 
-	public void setDesc(String desc) {
-		this.desc = desc;
-	}
-
-	public String getPrice() {
-		return price;
-	}
-
-	public void setPrice(String price) {
-		this.price = price;
-	}
-
+	/**
+	 * @return the id
+	 */
 	public String getId() {
 		return id;
 	}
 
+	/**
+	 * @param id the id to set
+	 */
 	public void setId(String id) {
 		this.id = id;
 	}
 
+	/**
+	 * @return the pcid
+	 */
+	public String getPcid() {
+		return pcid;
+	}
+
+	/**
+	 * @param pcid the pcid to set
+	 */
+	public void setPcid(String pcid) {
+		this.pcid = pcid;
+	}
+
+	/**
+	 * @return the desc
+	 */
+	public String getDesc() {
+		return desc;
+	}
+
+	/**
+	 * @param desc the desc to set
+	 */
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
+
+	/**
+	 * @return the price
+	 */
+	public String getPrice() {
+		return price;
+	}
+
+	/**
+	 * @param price the price to set
+	 */
+	public void setPrice(String price) {
+		this.price = price;
+	}
+
+	/**
+	 * @return the name
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * @param name the name to set
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	
-	private String name;
-
+		
 
 }
