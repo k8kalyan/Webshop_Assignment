@@ -1,6 +1,6 @@
 package com.webshop.registration.service;
 
-import com.webshop.registration.model.OrderEntity;
+import com.webshop.registration.model.OrderShipment;
 /**
  * OrderManager class will call the addOrder method. 
  * <P>
@@ -29,6 +29,6 @@ import com.webshop.registration.model.OrderEntity;
  * </PRE>
  */
 public interface OrderManager {
-	public void addOrder(OrderEntity orderEntity);
+	public void addOrder(OrderShipment orderShipment);
 
 }
