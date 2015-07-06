@@ -56,9 +56,8 @@ public class LoginDaoImpl implements LoginDao {
 		}
 		return null;
 	}
-   
-	public String getRole(String username){
 
+	public String getRole(String username){
 		List<Role> userroles=rolerepository.findRoleByUsername(username);
 		String role=userroles.get(0).getAuthority();
 		return role;
