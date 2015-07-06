@@ -37,6 +37,10 @@ import com.webshop.registration.model.UserEntity;
 @Repository
 @Transactional
 public class UserDaoImpl  implements UserDao{
+/**
+ * This method will persist user details into the database.
+ * @param userEntity 
+*/
 	@PersistenceContext
 	private EntityManager manager;
 
