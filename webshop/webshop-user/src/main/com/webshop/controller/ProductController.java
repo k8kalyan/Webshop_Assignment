@@ -1,8 +1,12 @@
 package com.webshop.controller;
+
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,11 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import com.webshop.registration.model.OrderEntity;
 import com.webshop.registration.model.ProductEntity;
+import com.webshop.registration.service.ProductManager;
+import com.webshop.registration.model.OrderEntity;
 import com.webshop.registration.model.ProductList;
 import com.webshop.registration.model.TestProduct;
-import com.webshop.registration.service.ProductManager;
+
 /**
  * ProductController prepares the order entity object with price, product and quantity information. 
  * <P>
@@ -49,7 +54,8 @@ public class ProductController {
 	ProductManager productmanager;
 	@RequestMapping("product.action")
 	public ModelAndView onSubmit(@RequestParam String product,Model model){
-		List<ProductEntity> prList=productmanager.getproductlist(product);
+		Integer pcid = Integer.parseInt(product);
+		List<ProductEntity> prList=productmanager.getproductlist(pcid);
 		List<TestProduct> testProductList = new ArrayList<TestProduct>();	
 
 		Iterator<ProductEntity> iterator = prList.iterator();
@@ -58,7 +64,6 @@ public class ProductController {
 			TestProduct a = new TestProduct();
 			a.setId(testPr.getId().toString());
 			a.setName(testPr.getName().toString());
-			a.setPcid(testPr.getPcid().toString());
 			a.setDesc(testPr.getDescription().toString());
 			a.setPrice(testPr.getPrice().toString());
 			testProductList.add(a);
@@ -89,5 +94,4 @@ public class ProductController {
 		orderlist.remove(id);
 		return "admin/cart";
 	}
-
 }
