@@ -35,6 +35,6 @@ public interface ProductDao {
   * This method will get the productlist.
   * @param ProductEntity 
  */
-	public List<ProductEntity> getproductlist(String product);
+	public List<ProductEntity> getproductlist(Integer pcid);
 
 }
