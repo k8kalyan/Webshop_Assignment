@@ -44,9 +44,9 @@ public class ProductDaoImpl implements ProductDao
  */{
 	@PersistenceContext
 	private EntityManager entitymanager;
-	public List<ProductEntity> getproductlist(String product){
+	public List<ProductEntity> getproductlist(Integer pcid){
 		Query query = entitymanager.createQuery("from ProductEntity p where p.pcid =:arg1");
-		query.setParameter("arg1", product);	
+		query.setParameter("arg1", pcid);	
 		List<ProductEntity> productlist=query.getResultList();
 		return productlist;
 
