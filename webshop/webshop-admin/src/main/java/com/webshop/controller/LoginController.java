@@ -1,4 +1,5 @@
 package com.webshop.controller;
+import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,8 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
+
 import com.webshop.login.service.LoginManager;
+import com.webshop.registration.model.ProductCategories;
 import com.webshop.registration.model.UserEntity;
+import com.webshop.registration.service.ProductCategoryManager;
 /**
  * Login controller class  provides implementations for login user. 
  * <P>
@@ -42,7 +46,11 @@ public class LoginController {
 
 	@Autowired
 	LoginManager loginmanager;
-
+	
+	@Autowired
+	ProductCategoryManager productCategoryManager;
+	
+	
 	@RequestMapping("login.action")
 	public String showLoginForm(){
 		return "login";
@@ -78,7 +86,10 @@ public class LoginController {
 				return new ModelAndView(new RedirectView("adminmain.action"));
 
 			}
-			return new ModelAndView(new RedirectView("adminhome.action"));
+			
+			List<ProductCategories> productCategoriesList=productCategoryManager.getProductCategoriesList();
+
+			return new ModelAndView("admin/adminhome" , "productCategoriesList", productCategoriesList);
 
 		}
 	}
