@@ -22,7 +22,7 @@
 					<td><form:input path="name" /></td>
 					<td>Product Description:</td>
 					<td><form:input path="description" /></td>
-					<td>Product Category:</td>
+					<td>Product CategoryId:</td>
 					<td><form:input path="pcid" /></td>
 					<td>Product Price:</td>
 					<td><form:input path="price" /></td>
