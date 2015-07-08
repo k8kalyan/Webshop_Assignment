@@ -1,7 +1,6 @@
 package com.webshop.controller;
-
+import java.util.List;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +10,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.webshop.login.service.LoginManager;
+import com.webshop.registration.model.ProductCategories;
 import com.webshop.registration.model.UserEntity;
+import com.webshop.registration.service.ProductCategoryManager;
 /**
  * Login controller class  provides implementations for login user. 
  * <P>
@@ -40,25 +41,25 @@ import com.webshop.registration.model.UserEntity;
  * </PRE>
  */
 
-
 @Controller
 public class LoginController {
 
 	@Autowired
 	LoginManager loginmanager;
-
+	
+	@Autowired
+	ProductCategoryManager productCategoryManager;
+	
+	
+	@RequestMapping("login.action")
+	public String showLoginForm(){
+		return "login";
+	}
 	@RequestMapping("adminhome.action")
 	public String showUserpage(){
 		return "admin/adminhome";
 	}
 
-	/**
-	 * This Method used to Insert the login details into the database.
-	 * @param username - contains User details.
-	 * @param password  - Contains  password details.
-	 * @param session
-	 * @param model
-	 * */
 
 	@RequestMapping("loginuser.action")
 	public ModelAndView getAuthenticated(@RequestParam String username,@RequestParam String password,HttpSession session,Model model){
@@ -81,12 +82,14 @@ public class LoginController {
 			String authority=loginmanager.getRole(username);
 
 			if(authority.equals("ROLE_USER")){
-		
-				return new ModelAndView(new RedirectView("adminhome.action"));
+				List<ProductCategories> productCategoriesList=productCategoryManager.getProductCategoriesList();
+
+				return new ModelAndView("admin/adminhome" , "productCategoriesList", productCategoriesList);
+			
 
 			}
+			
 			return new ModelAndView(new RedirectView("adminmain.action"));
-
 		}
 	}
 }
