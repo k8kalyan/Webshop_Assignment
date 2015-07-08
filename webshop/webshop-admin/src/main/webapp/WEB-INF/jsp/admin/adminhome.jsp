@@ -24,14 +24,16 @@ function productSubmit()
 <title>Admin-Home</title>
 </head>
 <body>
-
+<center>
   <form name="productForm" method="post" action="product.action" modelAttribute=> 
  
- <select name="product" id="product" placeholder="product">
-        <option value="1">Fruits</option>
-        <option value="2">Vegetables</option>
-        <option value="3">Books</option>
-    </select>
+ 	<c:if test="${not empty productCategoriesList}">    		
+	    <select name="product" id="product" placeholder="product">        
+	        <c:forEach items="${productCategoriesList}" var="productCategories" varStatus="status">
+	   			<option value="${productCategories.id}">${productCategories.name}</option>
+	        </c:forEach>
+	    </select>    		
+ 	</c:if>
    
        
      <button id="booksbutton" type="button" onclick="productSubmit()">Search</button>
@@ -39,7 +41,7 @@ function productSubmit()
      
     </form>
     
-    <table align="center" style="margin: 0px auto;">
+    <table border='1.5' width='600' cellpadding='1' cellspacing='1'>
        	 <c:if test="${not empty productList.products}">	
     		<tr>
    				<th>Item Name</th>
@@ -53,9 +55,7 @@ function productSubmit()
    				<td>${product.name} </td>
    				<td>${product.desc} </td>
    				<td>${product.price} </td>
-   				<td>  <a href="
-
- value="addtocart.action?id=${product.id}&name=${product.name}&price=${product.price}" />">AddToCart</a> </td>
+   				<td>  <a href="<c:url value="addtocart.action?id=${product.id}&name=${product.name}&price=${product.price}" />">AddToCart</a> </td>
    				
   			 </tr>
    		
@@ -66,6 +66,7 @@ function productSubmit()
 	</table>
 
    
-  <a  style="align:right" class="logout" href="logout.action">Logout</a>
+  <a  style="float: right;" class="logout" href="logout.action">Logout</a>
+</center>
 </body>
 </html>
