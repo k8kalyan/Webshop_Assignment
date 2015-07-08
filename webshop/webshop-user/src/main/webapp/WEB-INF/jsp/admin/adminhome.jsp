@@ -21,17 +21,19 @@ function productSubmit()
 	}
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Admin-Home</title>
+<title>User-Home</title>
 </head>
 <body>
 <center>
   <form name="productForm" method="post" action="product.action" modelAttribute=> 
  
- <select name="product" id="product" placeholder="product">
-        <option value="1">Fruits</option>
-        <option value="2">Vegetables</option>
-        <option value="3">Books</option>
-    </select>
+ 	<c:if test="${not empty productCategoriesList}">    		
+	    <select name="product" id="product" placeholder="product">        
+	        <c:forEach items="${productCategoriesList}" var="productCategories" varStatus="status">
+	   			<option value="${productCategories.id}">${productCategories.name}</option>
+	        </c:forEach>
+	    </select>    		
+ 	</c:if>
    
        
      <button id="booksbutton" type="button" onclick="productSubmit()">Search</button>
