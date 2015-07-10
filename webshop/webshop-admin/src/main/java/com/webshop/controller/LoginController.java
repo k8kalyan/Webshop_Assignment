@@ -1,6 +1,8 @@
 package com.webshop.controller;
 import java.util.List;
+
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,11 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
-
 import com.webshop.login.service.LoginManager;
+import com.webshop.registration.constants.WebshopConstants;
 import com.webshop.registration.model.ProductCategories;
 import com.webshop.registration.model.UserEntity;
 import com.webshop.registration.service.ProductCategoryManager;
+import com.webshop.registration.constants.WebshopConstants;
 /**
  * Login controller class  provides implementations for login user. 
  * <P>
@@ -81,7 +84,7 @@ public class LoginController {
 			session.setAttribute("loggedinUser", user);
 			String authority=loginmanager.getRole(username);
 
-			if(authority.equals("ROLE_ADMIN")){
+			if(authority.equals(WebshopConstants.ROLE_ADMIN)){
 
 				return new ModelAndView(new RedirectView("adminmain.action"));
 
