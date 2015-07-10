@@ -69,7 +69,7 @@ public class LoginController {
 
 		UserEntity user;
 		if(username.equals("") || password.equals("")){
-			return new ModelAndView(new RedirectView("login.action"));
+			return new ModelAndView(new RedirectView(WebshopConstants.Logging_action));
 
 		}
 		else{
@@ -77,22 +77,22 @@ public class LoginController {
 
 			if(user.equals("")){
 
-				model.addAttribute("loginError", "Error In login,Please try again");
+				model.addAttribute(WebshopConstants.Logging_Error, WebshopConstants.ErrorMsg);
 
-				return new ModelAndView(new RedirectView("login.action"));
+				return new ModelAndView(new RedirectView(WebshopConstants.Logging_action));
 			}
-			session.setAttribute("loggedinUser", user);
+			session.setAttribute(WebshopConstants.Logged_User, user);
 			String authority=loginmanager.getRole(username);
 
 			if(authority.equals(WebshopConstants.ROLE_ADMIN)){
 
-				return new ModelAndView(new RedirectView("adminmain.action"));
+				return new ModelAndView(new RedirectView(WebshopConstants.Adminmain_action));
 
 			}
 			
 			List<ProductCategories> productCategoriesList=productCategoryManager.getProductCategoriesList();
 
-			return new ModelAndView("admin/adminhome" , "productCategoriesList", productCategoriesList);
+			return new ModelAndView(WebshopConstants.Admin_Home, WebshopConstants.Product_CategoryList, productCategoriesList);
 
 		}
 	}
