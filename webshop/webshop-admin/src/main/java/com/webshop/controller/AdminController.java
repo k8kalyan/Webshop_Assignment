@@ -1,7 +1,9 @@
 package com.webshop.controller;
 
 import java.util.List;
+
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
+
+import com.webshop.registration.constants.WebshopConstants;
 import com.webshop.registration.model.ProductCategories;
 import com.webshop.registration.model.ProductEntity;
 import com.webshop.registration.service.AdminManager;
@@ -49,29 +53,29 @@ public class AdminController {
 	@RequestMapping("adminmain.action")
 	public String getproductCategoryList(HttpSession session){
 		List<ProductCategories> productlist=adminmanager.getproduct_categorylist();
-		session.setAttribute("productcategory", productlist);
+		session.setAttribute(WebshopConstants.PRODUCT_CATEGORY, productlist);
 		return "admin/adminmain";
 
 	}
 	@RequestMapping("editcategory.action")
 	public ModelAndView editproductCategoryList(HttpSession session){
 		List<ProductCategories> productlist=adminmanager.getproduct_categorylist();
-		session.setAttribute("productcategory", productlist);
-		return new ModelAndView(new RedirectView("adminmain.action"));
+		session.setAttribute(WebshopConstants.PRODUCT_CATEGORY, productlist);
+		return new ModelAndView(new RedirectView(WebshopConstants.ADMIN_MAIN_ACTION));
 
 	}
 	@RequestMapping("deletecategory.action")
 	public ModelAndView deleteproductCategoryList(@RequestParam("id") int id,HttpSession session){
 		Integer getid=id;
 		adminmanager.deletecategory(getid);
-		return new ModelAndView(new RedirectView("adminmain.action"));
+		return new ModelAndView(new RedirectView(WebshopConstants.ADMIN_MAIN_ACTION));
 
 	}
 	@RequestMapping("addcategory.action")
 	public ModelAndView addCategory(@ModelAttribute("productcategory") ProductCategories productcategory, BindingResult result,SessionStatus status){
 		adminmanager.addCategory(productcategory);
 		status.setComplete();
-		return new ModelAndView(new RedirectView("adminmain.action"));
+		return new ModelAndView(new RedirectView(WebshopConstants.ADMIN_MAIN_ACTION));
 
 	}
 	@RequestMapping("newcategory.action")
@@ -81,21 +85,21 @@ public class AdminController {
 	@RequestMapping("productlist.action")
 	public String getProductList(HttpSession session){
 		List<ProductEntity> products=adminmanager.getproduct_list();
-		session.setAttribute("products", products);
+		session.setAttribute(WebshopConstants.PRODUCTS, products);
 		return "admin/productlist";
 
 	}	
 	@RequestMapping("deleteproduct.action")
 	public ModelAndView deleteproduct(@RequestParam("id") int id,HttpSession session){
 		adminmanager.deleteProduct(id);
-		return new ModelAndView(new RedirectView("productlist.action"));
+		return new ModelAndView(new RedirectView(WebshopConstants.PRODUCTLIST_ACTION));
 
 	}
 	@RequestMapping("addproduct.action")
 	public ModelAndView addProduct(@ModelAttribute("product") ProductEntity product, BindingResult result,SessionStatus status){
 		adminmanager.addProduct(product);
 		status.setComplete();
-		return new ModelAndView(new RedirectView("productlist.action"));
+		return new ModelAndView(new RedirectView(WebshopConstants.PRODUCTLIST_ACTION));
 
 	}
 	@RequestMapping("newproduct.action")
