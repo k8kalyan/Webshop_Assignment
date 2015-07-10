@@ -31,12 +31,19 @@ public class WebshopConstants {
 	
 	public static String ROLE_ADMIN = "AdminUser";
 	public static String ROLE_USER = "NormalUser";
-	public static String Admin_Home ="admin/adminhome";
+	public static String ADMIN_HOME ="admin/adminhome";
 	public static String Product_CategoryList = "productCategoriesList";
 	public static String Logged_User = "loggedinUser";
-	public static String Logging_action ="login.action";
+	public static String LOGGING_ACTION ="login.action";
 	public static String Logging_Error = "loginError";
 	public static String ErrorMsg = "Error In login,Please try again";
-	public static String Adminmain_action = "adminmain.action";
+	public static String ADMIN_MAIN_ACTION = "adminmain.action";
+	public static String PRODUCT_CATEGORY ="productcategory";
+	public static String PRODUCTS = "products";
+	public static String PRODUCTLIST_ACTION = "productlist.action";
+	public static String PRODUCT_LIST = "productList";
+	public static String CART = "cart";
+	public static String ORDER_LIST = "orderlist";
+	
 
 }
