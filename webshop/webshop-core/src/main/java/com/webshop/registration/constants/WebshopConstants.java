@@ -31,5 +31,12 @@ public class WebshopConstants {
 	
 	public static String ROLE_ADMIN = "AdminUser";
 	public static String ROLE_USER = "NormalUser";
+	public static String Admin_Home ="admin/adminhome";
+	public static String Product_CategoryList = "productCategoriesList";
+	public static String Logged_User = "loggedinUser";
+	public static String Logging_action ="login.action";
+	public static String Logging_Error = "loginError";
+	public static String ErrorMsg = "Error In login,Please try again";
+	public static String Adminmain_action = "adminmain.action";
 
 }
