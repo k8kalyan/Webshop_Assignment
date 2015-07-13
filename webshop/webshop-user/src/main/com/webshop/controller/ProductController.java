@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.webshop.registration.constants.WebshopConstants;
 import com.webshop.registration.model.ProductEntity;
 import com.webshop.registration.service.ProductManager;
 import com.webshop.registration.model.OrderEntity;
@@ -72,7 +74,7 @@ public class ProductController {
 		ProductList productList = new ProductList();
 		productList.setProducts(testProductList);
 
-		return new ModelAndView("admin/adminhome" , "productList", productList);
+		return new ModelAndView(WebshopConstants.ADMIN_HOME ,WebshopConstants.PRODUCT_LIST , productList);
 	}
 
 	List<OrderEntity> orderlist=new ArrayList<OrderEntity>();
@@ -84,14 +86,14 @@ public class ProductController {
 		orderentity.setProductid(Integer.parseInt(id));
 		orderentity.setQuantity(1);		
 		orderlist.add(orderentity);
-		session.setAttribute("cart", orderlist);		
-		return "admin/cart";
+		session.setAttribute(WebshopConstants.CART, orderlist);		
+		return WebshopConstants.ADMIN_CART;
 	}
 
 
 	@RequestMapping(value="removefromcart.action",method=RequestMethod.GET)
 	public String removeFromCart(@RequestParam("id") int id,Model model){
 		orderlist.remove(id);
-		return "admin/cart";
+		return WebshopConstants.ADMIN_CART;
 	}
 }
