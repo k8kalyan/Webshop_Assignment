@@ -5,6 +5,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.webshop.registration.constants.WebshopConstants;
 /**
  * Logout controller class  provides implementations for user logged details. 
  * <P>
@@ -38,7 +40,7 @@ public class LogoutController {
 	@RequestMapping("logout.action")
 	public String logout(HttpServletRequest request,HttpSession session){
 		request.getSession().invalidate();
-		return "login";
+		return WebshopConstants.LOGIN;
 	}
 
 }
