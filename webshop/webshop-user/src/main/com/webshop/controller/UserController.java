@@ -6,10 +6,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
+import com.webshop.registration.constants.WebshopConstants;
 import com.webshop.registration.model.UserEntity;
 import com.webshop.registration.service.UserManager;
 /**
- * UserController class will get all the Registrationform details. 
+ * UserController class will get all the Registration form details. 
  * <P>
  * <B> Visibility decisions: </B>
  * <P>
@@ -44,7 +45,7 @@ public class UserController {
 	@RequestMapping("newuser.action")
 	public String addUserForm(@ModelAttribute("user") UserEntity user){
 
-		return "registration/registration";
+		return WebshopConstants.REGISTRTATION;
 	}
 	@RequestMapping("register.action")
 	public String SubmitForm(@ModelAttribute("user") UserEntity user, BindingResult result,SessionStatus status){
@@ -52,7 +53,7 @@ public class UserController {
 		manager.addUser(user);
 
 		status.setComplete();
-		return "registration/home";
+		return WebshopConstants.REGISTRATION_HOME;
 
 	}
 
