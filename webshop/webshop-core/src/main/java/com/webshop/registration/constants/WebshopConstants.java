@@ -32,11 +32,11 @@ public class WebshopConstants {
 	public static String ROLE_ADMIN = "AdminUser";
 	public static String ROLE_USER = "NormalUser";
 	public static String ADMIN_HOME ="admin/adminhome";
-	public static String Product_CategoryList = "productCategoriesList";
-	public static String Logged_User = "loggedinUser";
+	public static String PRODUCT_CATEGORY_LIST = "productCategoriesList";
+	public static String LOGGED_USER = "loggedinUser";
 	public static String LOGGING_ACTION ="login.action";
-	public static String Logging_Error = "loginError";
-	public static String ErrorMsg = "Error In login,Please try again";
+	public static String LOGGING_ERROR = "loginError";
+	public static String ERROR_MSG = "Error In login,Please try again";
 	public static String ADMIN_MAIN_ACTION = "adminmain.action";
 	public static String PRODUCT_CATEGORY ="productcategory";
 	public static String PRODUCTS = "products";
@@ -44,6 +44,16 @@ public class WebshopConstants {
 	public static String PRODUCT_LIST = "productList";
 	public static String CART = "cart";
 	public static String ORDER_LIST = "orderlist";
-	
+	public static String ADMIN_MAIN ="admin/adminmain";
+	public static String ADMIN_ADD_CATEGORY = "admin/addcategory";
+	public static String ADMIN_PRODUCT_LIST = "admin/productlist";
+	public static String ADMIN_ADD_PRODUCT="admin/addProduct";
+	public static String USER_ORDER = "order/order";
+	public static String ORDER_SUCCESS = "order/success";
+	public static String LOGIN ="login";
+	public static String REGISTRTATION = "registration/registration";
+	public static String REGISTRATION_HOME = "registration/home";
+	public static String ADMIN_CART = "admin/cart";
+
 
 }
