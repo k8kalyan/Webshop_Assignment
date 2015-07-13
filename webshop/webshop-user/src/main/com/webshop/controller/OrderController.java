@@ -5,6 +5,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
+
+import com.webshop.registration.constants.WebshopConstants;
 import com.webshop.registration.model.OrderShipment;
 import com.webshop.registration.service.OrderManager;
 
@@ -44,7 +46,7 @@ public class OrderController {
 	@RequestMapping("orderuser.action")
 	public String addOrderForm(@ModelAttribute("orderShipment") OrderShipment orderShipment){
 
-		return "order/order";
+		return WebshopConstants.USER_ORDER;
 	}
 	@RequestMapping("order.action")
 	
@@ -52,7 +54,7 @@ public class OrderController {
 
 		manager.addOrder(orderShipment);
 		status.setComplete();
-		return "order/success";
+		return WebshopConstants.ORDER_SUCCESS;
 
 	}
 
