@@ -15,7 +15,6 @@ import com.webshop.registration.constants.WebshopConstants;
 import com.webshop.registration.model.ProductCategories;
 import com.webshop.registration.model.UserEntity;
 import com.webshop.registration.service.ProductCategoryManager;
-import com.webshop.registration.constants.WebshopConstants;
 /**
  * Login controller class  provides implementations for login user. 
  * <P>
@@ -77,11 +76,11 @@ public class LoginController {
 
 			if(user.equals("")){
 
-				model.addAttribute(WebshopConstants.Logging_Error, WebshopConstants.ErrorMsg);
+				model.addAttribute(WebshopConstants.LOGGING_ERROR, WebshopConstants.ERROR_MSG);
 
 				return new ModelAndView(new RedirectView(WebshopConstants.LOGGING_ACTION));
 			}
-			session.setAttribute(WebshopConstants.Logged_User, user);
+			session.setAttribute(WebshopConstants.LOGGED_USER, user);
 			String authority=loginmanager.getRole(username);
 
 			if(authority.equals(WebshopConstants.ROLE_ADMIN)){
@@ -92,7 +91,7 @@ public class LoginController {
 			
 			List<ProductCategories> productCategoriesList=productCategoryManager.getProductCategoriesList();
 
-			return new ModelAndView(WebshopConstants.ADMIN_HOME, WebshopConstants.Product_CategoryList, productCategoriesList);
+			return new ModelAndView(WebshopConstants.ADMIN_HOME, WebshopConstants.PRODUCT_CATEGORY_LIST, productCategoriesList);
 
 		}
 	}
