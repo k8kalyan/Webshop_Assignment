@@ -15,6 +15,7 @@
  
   <!-- Enable annotation-based Spring MVC controllers (eg: @Controller annotation) -->
   <mvc:annotation-driven/>
+  <mvc:default-servlet-handler/>
    
   <!-- Classpath scanning of @Component, @Service, etc annotated class -->
   <context:component-scan base-package="com.webshop.login.model" />
@@ -23,11 +24,14 @@
   <context:component-scan base-package="com.webshop.registration.model" />
   <context:component-scan base-package="com.webshop.registration.repository" />
   <context:component-scan base-package="com.webshop.registration.service" />
-  <context:component-scan base-package="com.webshop.contoller" />
+  <context:component-scan base-package="com.webshop.registration.constants" />
+  <context:component-scan base-package="com.webshop.controller" />
+   
   
-   <jpa:repositories base-package="com.webshop.login.repository" />
+  <jpa:repositories base-package="com.webshop.login.repository" />
   
-    <!-- Resolve view name into jsp file located on /WEB-INF -->
+   
+  <!-- Resolve view name into jsp file located on /WEB-INF -->
   <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
     <property name="viewClass"
    value="org.springframework.web.servlet.view.JstlView" />
@@ -45,7 +49,7 @@
   
   <!-- EntityManagerFactory -->
   <bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="entityManagerFactory">
-  <property name = "persistenceXmlLocation"  value = "classpath:META-INF/spring-persistence.xml" />
+  <property name = "persistenceXmlLocation"  value = "classpath:/META-INF/spring-persistence.xml" />
     <property name="persistenceUnitName" value="persistenceUnit"/>
     <property name="dataSource" ref="dataSource"/>
   </bean>
