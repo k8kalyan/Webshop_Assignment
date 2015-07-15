@@ -54,6 +54,11 @@ public class WebshopConstants {
 	public static String REGISTRTATION = "registration/registration";
 	public static String REGISTRATION_HOME = "registration/home";
 	public static String ADMIN_CART = "admin/cart";
+	public static String PRODUCT_CATEGORIES = "category123";
+	public static String PRODUCT_ID ="id";
+	public static String PRODUCT_NAME="name";
+	public static String PRODUCT_DESCRIPTION="description";
+	public static String PRODUCT_PRICE = "price";
 
 
 }
