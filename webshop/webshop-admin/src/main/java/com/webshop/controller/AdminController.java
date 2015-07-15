@@ -1,9 +1,7 @@
 package com.webshop.controller;
 
 import java.util.List;
-
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
-
 import com.webshop.registration.constants.WebshopConstants;
 import com.webshop.registration.model.ProductCategories;
 import com.webshop.registration.model.ProductEntity;
@@ -58,11 +55,14 @@ public class AdminController {
 
 	}
 	@RequestMapping("editcategory.action")
-	public ModelAndView editproductCategoryList(HttpSession session){
-		List<ProductCategories> productlist=adminmanager.getproduct_categorylist();
-		session.setAttribute(WebshopConstants.PRODUCT_CATEGORY, productlist);
+	public String editCategory(@ModelAttribute("productcategory") ProductCategories aproductcategory, BindingResult result,HttpSession session){
+		session.setAttribute(WebshopConstants.PRODUCT_CATEGORIES, aproductcategory);
+		return "admin/editcategory";
+	}
+	@RequestMapping("editupdatecategory.action")
+	public ModelAndView editupdateCategory(@ModelAttribute("productcategory") ProductCategories productcategory, BindingResult result,HttpSession session){
+		adminmanager.updateCategory(productcategory);
 		return new ModelAndView(new RedirectView(WebshopConstants.ADMIN_MAIN_ACTION));
-
 	}
 	@RequestMapping("deletecategory.action")
 	public ModelAndView deleteproductCategoryList(@RequestParam("id") int id,HttpSession session){
@@ -88,7 +88,21 @@ public class AdminController {
 		session.setAttribute(WebshopConstants.PRODUCTS, products);
 		return "admin/productlist";
 
-	}	
+	}
+
+	@RequestMapping("editproduct.action")
+	public String editProduct(@ModelAttribute("product") ProductEntity aproduct, BindingResult result,HttpSession session){
+		session.setAttribute("product1", aproduct);
+		return "admin/editProduct";
+	
+	}
+	
+	@RequestMapping("editupdateproduct.action")
+	public ModelAndView editupdateProduct(@ModelAttribute("product") ProductEntity product, BindingResult result,HttpSession session){
+		adminmanager.updateProduct(product);
+		return new ModelAndView(new RedirectView("adminmain.action"));
+
+}	
 	@RequestMapping("deleteproduct.action")
 	public ModelAndView deleteproduct(@RequestParam("id") int id,HttpSession session){
 		adminmanager.deleteProduct(id);
