@@ -2,11 +2,14 @@ package com.webshop.registration.repository;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import com.webshop.registration.constants.WebshopConstants;
 import com.webshop.registration.model.ProductCategories;
 import com.webshop.registration.model.ProductEntity;
+
 /**
  * AdminDAOImpl class will invoke AdminDAO and calls the methods addCategory, deleteCategory and addProduct methods
  * * <P>
@@ -54,7 +57,7 @@ public class AdminDaoImpl implements AdminDao {
 	 * This method used to delete the category
 	 *  @param id 
 	 */
-	public boolean deletecategory( Integer id )
+	public boolean deletecategory(Integer id )
 	{
 		try
 		{
@@ -62,6 +65,55 @@ public class AdminDaoImpl implements AdminDao {
 			.setParameter(1, id)
 			.executeUpdate();
 			entitymanager.flush();
+			return true;
+		}
+		catch (Exception e)
+		{
+			return false;
+		}
+	}
+	/**
+	 * This method used to update the product Categories
+	 *  @param productCategory 
+	 */
+	public boolean updateCategory(ProductCategories productCategory)
+	{
+		try
+		{
+
+			Integer id1=productCategory.getId();
+			String name1=productCategory.getName();
+			TypedQuery<ProductCategories> Query=entitymanager.createNamedQuery("ProductEntity.findCategoryName",ProductCategories.class);
+			Query.setParameter(WebshopConstants.PRODUCT_ID, id1);
+			List<ProductCategories> productlist1=Query.getResultList();
+			Query updatequery=entitymanager.createNamedQuery("ProductEntity.updateCategory");
+			updatequery.setParameter(WebshopConstants.PRODUCT_ID, id1);
+			updatequery.setParameter(WebshopConstants.PRODUCT_NAME, name1);
+			int updatecount=updatequery.executeUpdate();
+
+			return true;
+		}
+		catch (Exception e)
+		{
+			return false;
+		}
+	}
+	/**
+	 * This method used to add the product
+	 *  @param productCategory 
+	 */
+	public boolean updateProduct(ProductEntity product)
+	{
+		try
+		{
+
+			Integer pid1=product.getId();
+			String pname1=product.getName();
+			Query updatequery=entitymanager.createNamedQuery("ProductEntity.updateProduct");
+			updatequery.setParameter(WebshopConstants.PRODUCT_ID,pid1);
+			updatequery.setParameter(WebshopConstants.PRODUCT_NAME, pname1);
+			int updatecount=updatequery.executeUpdate();
+
 			return true;
 		}
 		catch (Exception e)
@@ -103,10 +155,10 @@ public class AdminDaoImpl implements AdminDao {
 	{
 		try
 		{
- 		entitymanager.createNamedQuery("deleteProductById", ProductEntity.class)
-		.setParameter(1, id)
-		.executeUpdate();
-		entitymanager.flush();
+			entitymanager.createNamedQuery("deleteProductById", ProductEntity.class)
+			.setParameter(1, id)
+			.executeUpdate();
+			entitymanager.flush();
 			return true;
 		}
 		catch (Exception e)
