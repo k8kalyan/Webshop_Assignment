@@ -22,7 +22,7 @@ import com.webshop.registration.model.ProductEntity;
  * <PRE>
  * 
  * =============================================================================
- * Prior Date            By                  Version  Project/CSR  Description 
+ * Prior Date            By              Version  Project/CSR  Description 
  * ---------- --------------------------   ---------- ------------ ------------ 
  * 18/06/2015         kalyan             N/A          webshop        Created.
  * 
@@ -46,7 +46,7 @@ public interface AdminDao {
 	public void addCategory(ProductCategories productCategory);
 	/**
      * This method used to add the product.
-     * @param id 
+     * @param product 
      */
 	public void addProduct(ProductEntity product);
 	/**
@@ -59,5 +59,16 @@ public interface AdminDao {
      * @param id 
      */
 	boolean deleteProduct(Integer id);
+	/**
+     * This method used to update the product categories.
+     * @param productCategory 
+     */
+	boolean updateCategory(ProductCategories productCategory);
+	/**
+     * This method used to update the product.
+     * @param product 
+     */
+	public boolean updateProduct(ProductEntity product);
+
 
 }
