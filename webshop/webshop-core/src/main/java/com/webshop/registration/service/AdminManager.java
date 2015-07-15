@@ -4,7 +4,7 @@ import java.util.List;
 import com.webshop.registration.model.ProductCategories;
 import com.webshop.registration.model.ProductEntity;
 /**
- * ProductManager will call the methods addCategory,deleteCategory and addproducts methods. 
+ * AdminManager will call the methods addCategory,deleteCategory and addproducts methods. 
  * <P>
  * <B> Visibility decisions: </B>
  * <P>
@@ -59,4 +59,15 @@ public interface AdminManager {
      * @param id 
      */
 	boolean deleteProduct(Integer id);
+	 /**
+     * This Method Used to update the Categories.
+     * @param productCategory 
+     */
+	public boolean updateCategory(ProductCategories productCategory);
+	 /**
+     * This Method Used to update the product.
+     * @param product 
+     */
+	public boolean updateProduct(ProductEntity product);
+
 }
