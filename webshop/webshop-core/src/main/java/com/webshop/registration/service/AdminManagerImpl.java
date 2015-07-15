@@ -53,19 +53,33 @@ public class AdminManagerImpl implements AdminManager {
 	}
 	 /**
      * This Method Used to add the category.
-     * @param id 
+     * @param productCategory 
      */
 	public void addCategory(ProductCategories productCategory)
 	{
 		admindao.addCategory(productCategory);
 	}
 	 /**
+     * This Method Used to update the category.
+     * @param productCategory 
+     */
+	public boolean updateCategory(ProductCategories productCategory){
+		return admindao.updateCategory(productCategory);
+	}
+	 /**
      * This Method Used to add the product.
-     * @param id 
+     * @param product 
      */
 	public void addProduct(ProductEntity product)
 	{
 		admindao.addProduct(product);
+	}
+	 /**
+     * This Method Used to update the product.
+     * @param product 
+     */
+	public boolean updateProduct(ProductEntity product){
+		return admindao.updateProduct(product);
 	}
 	 /**
      * This Method Used to get the productlist.
