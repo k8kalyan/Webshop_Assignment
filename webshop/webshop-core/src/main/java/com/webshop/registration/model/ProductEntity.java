@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.JoinColumn;
@@ -49,7 +50,11 @@ import javax.persistence.SqlResultSetMapping;
 
 @Entity
 @Table(name="products")
-@NamedQuery(name="ProductEntity.find",query="select p from ProductEntity p")
+@NamedQueries({
+@NamedQuery(name="ProductEntity.find", query="select p from ProductEntity p"),
+@NamedQuery(name="ProductEntity.findproductName", query="select p from ProductEntity p WHERE p.id = :id"),
+@NamedQuery(name="ProductEntity.updateProduct",query="update ProductEntity p set p.name=:name where p.id=:id")
+})
 @SqlResultSetMapping(name="deleteProductResult", columns = {@ColumnResult(name = "count")})
 @NamedNativeQueries({
 	@NamedNativeQuery(
@@ -116,6 +121,19 @@ public class ProductEntity implements Serializable {
 	/**
 	 * @return the pcid
 	 */
+
+	public String getPrice() {
+		return price;
+	}
+	/**
+	 * @param price the price to set
+	 */
+	public void setPrice(String price) {
+		this.price = price;
+	}
+	/**
+	 * @return the pcid
+	 */
 	public Integer getPcid() {
 		return pcid;
 	}
@@ -125,15 +143,6 @@ public class ProductEntity implements Serializable {
 	public void setPcid(Integer pcid) {
 		this.pcid = pcid;
 	}
-	public String getPrice() {
-		return price;
-	}
-	/**
-	 * @param price the price to set
-	 */
-	public void setPrice(String price) {
-		this.price = price;
-	} 
 	
-	
+		
 }
