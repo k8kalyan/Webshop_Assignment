@@ -14,6 +14,7 @@ import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.NamedQueries;
 import javax.persistence.Table;
 import javax.persistence.SqlResultSetMapping;
 /**
@@ -45,7 +46,11 @@ import javax.persistence.SqlResultSetMapping;
  */
 @Entity
 @Table(name="product_categories")
-@NamedQuery(name="ProductCategories.find",query="select p from ProductCategories p")
+@NamedQueries({
+	@NamedQuery(name="ProductCategories.find",query="select p from ProductCategories p"),
+	@NamedQuery(name="ProductEntity.findCategoryName", query="select p from ProductCategories p WHERE p.id = :id"),
+	@NamedQuery(name="ProductEntity.updateCategory",query="update ProductCategories p set p.name=:name where p.id=:id")
+})
 @SqlResultSetMapping(name="deleteResult", columns = { @ColumnResult(name = "count")})
 @NamedNativeQueries({
 	@NamedNativeQuery(
