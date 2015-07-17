@@ -1,11 +1,15 @@
 package com.webshop.registration.repository;
 
 import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
 import com.webshop.registration.model.ProductCategories;
 /**
  * ProductCategoryDaoImpl invoke ProductCategoryDao class and calls the method getProductCategoriesList. 
@@ -39,12 +43,14 @@ import com.webshop.registration.model.ProductCategories;
 @Repository
 @Transactional
 public class ProductCategoryDaoImpl implements ProductCategoryDao {
-	
+ private static final Logger logger = Logger.getLogger(ProductCategoryDaoImpl.class);	
 	@PersistenceContext
 	private EntityManager entitymanager;
 	public List<ProductCategories> getProductCategoriesList() {
+		logger.debug("ProductCategoryDaoImpl ::getProductCategoriesList -START");
 		TypedQuery<ProductCategories> Query=entitymanager.createNamedQuery("ProductCategories.find",ProductCategories.class);
 		List<ProductCategories> productCategorieslist=Query.getResultList();
+		logger.debug("ProductCategoryDaoImpl ::getProductCategoriesList -END");
 		return productCategorieslist;
 	}
 
