@@ -57,7 +57,7 @@ public class ProductController {
 	@RequestMapping("product.action")
 	public ModelAndView onSubmit(@RequestParam String product,Model model){
 		Integer pcid = Integer.parseInt(product);
-		List<ProductEntity> prList=productmanager.getproductlist(pcid);
+		List<ProductEntity> prList=productmanager.getProductlist(pcid);
 		List<TestProduct> testProductList = new ArrayList<TestProduct>();	
 
 		Iterator<ProductEntity> iterator = prList.iterator();
