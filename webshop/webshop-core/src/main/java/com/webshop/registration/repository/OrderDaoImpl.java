@@ -4,10 +4,11 @@ package com.webshop.registration.repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.webshop.registration.model.OrderShipment;;
+import com.webshop.registration.model.OrderShipment;
 /**
  * OrderManagerImpl invoke OrderManager class and calls the method addOrder. 
  * <P>
@@ -37,25 +38,27 @@ import com.webshop.registration.model.OrderShipment;;
  */
 
 
-
 @Repository
 @Transactional
 public class OrderDaoImpl implements OrderDao {
+private static final Logger logger = Logger.getLogger(ProductCategoryDaoImpl.class);
 	@PersistenceContext
 	private EntityManager entitymanager;
- /**
-  * This method used to add the shipmentorder.
-  * @param orderShipment 
- */
-	
-public void addOrder(OrderShipment orderShipment){
-	
-	try
-	{
-	  entitymanager.persist(orderShipment);
-	  } catch(Exception e){
-		e.printStackTrace();
+	/**
+	 * This method used to add the shipmentorder.
+	 * @param orderShipment 
+	 */
+
+	public void addOrder(OrderShipment orderShipment){
+	 logger.debug("OrderDaoImpl ::addOrder -START");
+		try
+		{
+			entitymanager.persist(orderShipment);	 
+
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+	  logger.debug("OrderDaoImpl ::addOrder -END");
 	}
-}
 
 }
