@@ -32,7 +32,7 @@ import com.webshop.registration.model.ProductEntity;
  * </PRE>
  */
 public interface ProductManager {
-	public List<ProductEntity> getproductlist(Integer pcid);
+	public List<ProductEntity> getProductlist(Integer pcid);
 
 }
 
