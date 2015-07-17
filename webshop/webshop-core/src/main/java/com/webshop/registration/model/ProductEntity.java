@@ -1,19 +1,13 @@
 package com.webshop.registration.model;
 import java.io.Serializable;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ColumnResult;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedNativeQuery;
@@ -53,7 +47,7 @@ import javax.persistence.SqlResultSetMapping;
 @NamedQueries({
 @NamedQuery(name="ProductEntity.find", query="select p from ProductEntity p"),
 @NamedQuery(name="ProductEntity.findproductName", query="select p from ProductEntity p WHERE p.id = :id"),
-@NamedQuery(name="ProductEntity.updateProduct",query="update ProductEntity p set p.name=:name where p.id=:id")
+@NamedQuery(name="ProductEntity.updateProduct",query="update ProductEntity p set p.name=:name,p.description=:description,p.price=:price where p.id=:id")
 })
 @SqlResultSetMapping(name="deleteProductResult", columns = {@ColumnResult(name = "count")})
 @NamedNativeQueries({
@@ -79,9 +73,6 @@ public class ProductEntity implements Serializable {
 	private Integer pcid;
 	@Column(name="PRICE")
 	private String price;
-	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	@JoinColumn(name = "productid")
-	private Set<OrderEntity> order;
 	/**
 	 * @return the id
 	 */
