@@ -4,7 +4,6 @@ package com.webshop.registration.service;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.webshop.registration.model.ProductEntity;
 import com.webshop.registration.repository.ProductDao;
 
@@ -39,8 +38,8 @@ import com.webshop.registration.repository.ProductDao;
 public class ProductManagerImpl implements ProductManager{
 	@Autowired 
 	ProductDao productdao;
-	public List<ProductEntity> getproductlist(Integer pcid){
-		return productdao.getproductlist(pcid);
+	public List<ProductEntity> getProductlist(Integer pcid){
+		return productdao.getProductlist(pcid);
 	}
 
 }
