@@ -59,6 +59,8 @@ public class WebshopConstants {
 	public static String PRODUCT_NAME="name";
 	public static String PRODUCT_DESCRIPTION="description";
 	public static String PRODUCT_PRICE = "price";
+	public static String CATEGORY_NAME = "Books";
+	public static String PRODUCTS_NAME = "Apple";
 
 
 }
