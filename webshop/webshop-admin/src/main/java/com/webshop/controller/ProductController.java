@@ -4,9 +4,7 @@ package com.webshop.controller;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.webshop.registration.constants.WebshopConstants;
 import com.webshop.registration.model.ProductEntity;
 import com.webshop.registration.service.ProductManager;
@@ -57,7 +54,7 @@ public class ProductController {
 	@RequestMapping("product.action")
 	public ModelAndView onSubmit(@RequestParam String product,Model model){
 		Integer pcid = Integer.parseInt(product);
-		List<ProductEntity> prList=productmanager.getproductlist(pcid);
+		List<ProductEntity> prList=productmanager.getProductlist(pcid);
 		List<TestProduct> testProductList = new ArrayList<TestProduct>();	
 
 		Iterator<ProductEntity> iterator = prList.iterator();
