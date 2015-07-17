@@ -1,11 +1,15 @@
 package com.webshop.registration.repository;
 import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
 import com.webshop.registration.constants.WebshopConstants;
 import com.webshop.registration.model.ProductCategories;
 import com.webshop.registration.model.ProductEntity;
@@ -41,6 +45,7 @@ import com.webshop.registration.model.ProductEntity;
 @Repository
 @Transactional
 public class AdminDaoImpl implements AdminDao {
+private static final Logger logger = Logger.getLogger(AdminDaoImpl.class);
 	/**
 	 * This method used to add the product categories list
 	 *  @param productCategories 
@@ -48,8 +53,8 @@ public class AdminDaoImpl implements AdminDao {
 	@PersistenceContext
 	private EntityManager entitymanager;
 	public List<ProductCategories> getproduct_categorylist(){
-		TypedQuery<ProductCategories> Query=entitymanager.createNamedQuery("ProductCategories.find",ProductCategories.class);
-		List<ProductCategories> productlist=Query.getResultList();
+	 TypedQuery<ProductCategories> Query=entitymanager.createNamedQuery("ProductCategories.find",ProductCategories.class);
+	 List<ProductCategories> productlist=Query.getResultList();
 		return productlist;
 
 	}
@@ -59,6 +64,8 @@ public class AdminDaoImpl implements AdminDao {
 	 */
 	public boolean deletecategory(Integer id )
 	{
+	 logger.debug("AdminDaoImpl ::deletecategory -START");
+
 		try
 		{
 			entitymanager.createNamedQuery("deleteEmployeeById", ProductCategories.class)
@@ -67,10 +74,11 @@ public class AdminDaoImpl implements AdminDao {
 			entitymanager.flush();
 			return true;
 		}
-		catch (Exception e)
-		{
-			return false;
+		catch (Exception e){
 		}
+		logger.debug("AdminDaoImpl ::deletecategory -END");
+		return false;
+
 	}
 	/**
 	 * This method used to update the product Categories
@@ -78,25 +86,26 @@ public class AdminDaoImpl implements AdminDao {
 	 */
 	public boolean updateCategory(ProductCategories productCategory)
 	{
+	logger.debug("AdminDaoImpl ::updateCategory -START");
 		try
 		{
 
-			Integer id1=productCategory.getId();
-			String name1=productCategory.getName();
-			TypedQuery<ProductCategories> Query=entitymanager.createNamedQuery("ProductEntity.findCategoryName",ProductCategories.class);
-			Query.setParameter(WebshopConstants.PRODUCT_ID, id1);
-			List<ProductCategories> productlist1=Query.getResultList();
-			Query updatequery=entitymanager.createNamedQuery("ProductEntity.updateCategory");
-			updatequery.setParameter(WebshopConstants.PRODUCT_ID, id1);
-			updatequery.setParameter(WebshopConstants.PRODUCT_NAME, name1);
-			int updatecount=updatequery.executeUpdate();
+		Integer id1=productCategory.getId();
+		String name1=productCategory.getName();
+		TypedQuery<ProductCategories> Query=entitymanager.createNamedQuery("ProductEntity.findCategoryName",ProductCategories.class);
+		Query.setParameter(WebshopConstants.PRODUCT_ID, id1);
+		List<ProductCategories> productlist1=Query.getResultList();
+		Query updatequery=entitymanager.createNamedQuery("ProductEntity.updateCategory");
+		updatequery.setParameter(WebshopConstants.PRODUCT_ID, id1);
+		updatequery.setParameter(WebshopConstants.PRODUCT_NAME, name1);
+		int updatecount=updatequery.executeUpdate();
 
-			return true;
+		return true;
 		}
-		catch (Exception e)
-		{
-			return false;
-		}
+		catch (Exception e){
+	 	}
+	  logger.debug("AdminDaoImpl ::updateCategory -END");		
+		return false;
 	}
 	/**
 	 * This method used to add the product
@@ -104,22 +113,27 @@ public class AdminDaoImpl implements AdminDao {
 	 */
 	public boolean updateProduct(ProductEntity product)
 	{
+	logger.debug("AdminDaoImpl ::updateProduct -START");
 		try
 		{
-
+			
 			Integer pid1=product.getId();
 			String pname1=product.getName();
+			String pdesc=product.getDescription();
+        	String pprice=product.getPrice();
 			Query updatequery=entitymanager.createNamedQuery("ProductEntity.updateProduct");
 			updatequery.setParameter(WebshopConstants.PRODUCT_ID,pid1);
 			updatequery.setParameter(WebshopConstants.PRODUCT_NAME, pname1);
+			updatequery.setParameter(WebshopConstants.PRODUCT_DESCRIPTION,pdesc);
+			updatequery.setParameter(WebshopConstants.PRODUCT_PRICE, pprice);
 			int updatecount=updatequery.executeUpdate();
 
 			return true;
 		}
-		catch (Exception e)
-		{
-			return false;
+		catch (Exception e)	{
 		}
+	logger.debug("AdminDaoImpl ::updateProduct -START");
+		return false;
 	}
 	/**
 	 * This method used to add the category
@@ -153,6 +167,7 @@ public class AdminDaoImpl implements AdminDao {
 
 	public boolean deleteProduct( Integer id )
 	{
+	logger.debug("AdminDaoImpl ::deleteProduct -START");
 		try
 		{
 			entitymanager.createNamedQuery("deleteProductById", ProductEntity.class)
@@ -161,10 +176,11 @@ public class AdminDaoImpl implements AdminDao {
 			entitymanager.flush();
 			return true;
 		}
-		catch (Exception e)
-		{
-			return false;
+		catch (Exception e)	{
+			
 		}
+	logger.debug("AdminDaoImpl ::deleteProduct -END");
+		return false;
 	}
 
 
