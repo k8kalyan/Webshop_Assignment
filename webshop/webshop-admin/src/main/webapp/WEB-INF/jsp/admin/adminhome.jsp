@@ -23,7 +23,7 @@ function productSubmit()
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Admin-Home</title>
 </head>
-<body>
+<body bgcolor="#E8E8E8">
 <center>
   <form name="productForm" method="post" action="product.action" modelAttribute=> 
  
@@ -67,6 +67,12 @@ function productSubmit()
 
    
   <a  style="float: right;" class="logout" href="logout.action">Logout</a>
+   <div>
+	<a style="float: right;" class="login" href="login.action">login</a>
+  </div>
+  <div>
+	<a style="float: right;" class="Register" href="newuser.action">Register</a>
+  </div>
 </center>
 </body>
 </html>
