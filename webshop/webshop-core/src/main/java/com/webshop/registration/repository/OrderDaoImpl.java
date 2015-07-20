@@ -1,6 +1,8 @@
 
 package com.webshop.registration.repository;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.webshop.registration.model.OrderShipment;
+import com.webshop.registration.model.OrderEntity;
 /**
  * OrderManagerImpl invoke OrderManager class and calls the method addOrder. 
  * <P>
@@ -59,6 +62,26 @@ private static final Logger logger = Logger.getLogger(ProductCategoryDaoImpl.cla
 			e.printStackTrace();
 		}
 	  logger.debug("OrderDaoImpl ::addOrder -END");
+	}
+	
+	/**
+	 * This method used to add the multiple shipments with different order lines.
+	 * @param orderShipment 
+	 */
+
+	public void addOrderLines(List<OrderEntity> orderlines) {
+	 logger.debug("OrderDaoImpl ::addOrder -START");  			
+		try
+		{ 
+			
+		 for (OrderEntity orderEntity : orderlines){
+			 entitymanager.persist(orderEntity);		 
+		 }
+		  
+		  } catch(Exception e){
+			e.printStackTrace();
+		}
+	logger.debug("OrderDaoImpl ::addOrder -END");
 	}
 
 }
