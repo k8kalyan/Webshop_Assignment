@@ -48,18 +48,18 @@ public class LoginController {
 
 	@Autowired
 	LoginManager loginmanager;
-	
+
 	@Autowired
 	ProductCategoryManager productCategoryManager;
-	
-	
+
 	@RequestMapping("login.action")
 	public String showLoginForm(){
-		return "login";
+		return "admin/login";
 	}
 	@RequestMapping("adminhome.action")
-	public String showUserpage(){
-		return "admin/adminhome";
+	public ModelAndView showUserpage(){		
+		List<ProductCategories> productCategoriesList=productCategoryManager.getProductCategoriesList();
+	return new ModelAndView(WebshopConstants.ADMIN_HOME, WebshopConstants.PRODUCT_CATEGORY_LIST, productCategoriesList);
 	}
 
 
@@ -88,7 +88,7 @@ public class LoginController {
 				return new ModelAndView(new RedirectView(WebshopConstants.ADMIN_MAIN_ACTION));
 
 			}
-			
+
 			List<ProductCategories> productCategoriesList=productCategoryManager.getProductCategoriesList();
 
 			return new ModelAndView(WebshopConstants.ADMIN_HOME, WebshopConstants.PRODUCT_CATEGORY_LIST, productCategoriesList);
