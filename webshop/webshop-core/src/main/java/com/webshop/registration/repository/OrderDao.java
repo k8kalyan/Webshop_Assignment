@@ -1,6 +1,10 @@
 package com.webshop.registration.repository;
 
+import java.util.List;
+
 import com.webshop.registration.model.OrderShipment;
+import com.webshop.registration.model.OrderEntity;
+
 /**
  * OrderDAO class will invoke addOrder method . 
  * <P>
@@ -35,5 +39,7 @@ public interface OrderDao {
      * @param orderShipment 
      */
 	public void addOrder(OrderShipment orderShipment);
+	
+	public void addOrderLines(List<OrderEntity> orderlines);
 
 }
