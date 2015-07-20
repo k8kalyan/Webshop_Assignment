@@ -21,8 +21,6 @@ public class OrderShipment {
 	private Integer id;
 	@Column(name="User_Id")
 	private Integer userid;
-	@Column(name="Order_No")
-	private String orderNo;
 	@Column(name="Order_Date")
 	private Date orderDate;
 	@Column(name="Shipping_Address")
@@ -60,18 +58,7 @@ public class OrderShipment {
 	public void setUserid(Integer userid) {
 		this.userid = userid;
 	}
-	/**
-	 * @return the orderNo
-	 */
-	public String getOrderNo() {
-		return orderNo;
-	}
-	/**
-	 * @param orderNo the orderNo to set
-	 */
-	public void setOrderNo(String orderNo) {
-		this.orderNo = orderNo;
-	}
+	
 	/**
 	 * @return the orderDate
 	 */
