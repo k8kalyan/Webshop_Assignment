@@ -1,10 +1,13 @@
 package com.webshop.registration.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.webshop.registration.model.OrderShipment;
 import com.webshop.registration.repository.OrderDao;
+import com.webshop.registration.model.OrderEntity;
 /**
  * OrderManagerImpl invoke OrderManager class and calls the method addOrder. 
  * <P>
@@ -40,4 +43,10 @@ public class OrderManagerImpl implements OrderManager {
 	public void addOrder(OrderShipment orderShipment){
 		orderdao.addOrder(orderShipment);
 	}
+	
+	public void addOrderLines(List<OrderEntity> orderlines) {
+		orderdao.addOrderLines(orderlines);
+		
+	}
+	
 }
