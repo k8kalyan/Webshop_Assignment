@@ -1,6 +1,9 @@
 package com.webshop.registration.service;
 
+import java.util.List;
+
 import com.webshop.registration.model.OrderShipment;
+import com.webshop.registration.model.OrderEntity;
 /**
  * OrderManager class will call the addOrder method. 
  * <P>
@@ -29,6 +32,9 @@ import com.webshop.registration.model.OrderShipment;
  * </PRE>
  */
 public interface OrderManager {
+	
 	public void addOrder(OrderShipment orderShipment);
+	
+	public void addOrderLines(List<OrderEntity> orderlines);
 
 }
