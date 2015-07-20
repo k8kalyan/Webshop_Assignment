@@ -53,15 +53,6 @@ public class LoginController {
 	@Autowired
 	ProductCategoryManager productCategoryManager;
 	
-	
-	/*@RequestMapping("login.action")
-	public String showLoginForm(){
-		return "login";
-	}
-	@RequestMapping("adminhome.action")
-	public String showUserpage(){
-		return WebshopConstants.ADMIN_HOME;
-	}*/
 	@RequestMapping("login.action")
 	public String showLoginForm(){
 		return "admin/login";
